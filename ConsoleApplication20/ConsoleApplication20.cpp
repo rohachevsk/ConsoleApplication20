@@ -24,13 +24,13 @@ char* mystrchr(char* str, char s) {
     return nullptr;
 }
 
-char* mystrstr(char* str1, char* str2) {
+const char* mystrstr(const char* str1, const char* str2) {
     if (*str2 == '\0') {
         return str1;
     }
     while (*str1 != '\0') {
-        char* ptr1 = str1;
-        char* ptr2 = str2;
+        const char* ptr1 = str1;
+        const char* ptr2 = str2;
         while (*ptr1 == *ptr2 && *ptr2 != '\0') {
             ptr1++;
             ptr2++;
@@ -47,44 +47,45 @@ int main() {
     char buffer1[50] = "Hello, ";
     const char* str_to_add = "world!";
     char* result_cat = mystrcat(buffer1, str_to_add);
-    std::cout << "Result of mystrcat: " << result_cat << std::endl;
+    cout << "Result of mystrcat: " << result_cat << endl;
 
     char str_to_search_char[] = "programming";
     char char_to_find = 'g';
     char* result_chr = mystrchr(str_to_search_char, char_to_find);
     if (result_chr != nullptr) {
-        std::cout << "Character '" << char_to_find << "' found in: " << str_to_search_char << ", starting from position: " << result_chr - str_to_search_char << std::endl;
+        cout << "Character '" << char_to_find << "' found in: " << str_to_search_char << ", starting from position: " << result_chr - str_to_search_char << endl;
     }
     else {
-        std::cout << "Character '" << char_to_find << "' not found in: " << str_to_search_char << std::endl;
+        cout << "Character '" << char_to_find << "' not found in: " << str_to_search_char << endl;
     }
 
     char char_to_find_not_present = 'z';
     result_chr = mystrchr(str_to_search_char, char_to_find_not_present);
     if (result_chr != nullptr) {
-        std::cout << "Character '" << char_to_find_not_present << "' found in: " << str_to_search_char << std::endl;
+        cout << "Character '" << char_to_find_not_present << "' found in: " << str_to_search_char << endl;
     }
     else {
-        std::cout << "Character '" << char_to_find_not_present << "' not found in: " << str_to_search_char << std::endl;
+        cout << "Character '" << char_to_find_not_present << "' not found in: " << str_to_search_char << endl;
     }
 
     char str_to_search_str[] = "This is a simple string";
-    char str_to_find_sub[] = "simple";
-    char* result_str = mystrstr(str_to_search_str, str_to_find_sub);
+    const char* str_to_find_sub = "simple";
+    const char* str_to_find_sub_not_present = "complex";
+
+    const char* result_str = mystrstr(str_to_search_str, str_to_find_sub);
     if (result_str != nullptr) {
-        std::cout << "Substring '" << str_to_find_sub << "' found in: " << str_to_search_str << ", starting from position: " << result_str - str_to_search_str << std::endl;
+        cout << "Substring '" << str_to_find_sub << "' found in: " << str_to_search_str << ", starting from position: " << result_str - str_to_search_str << endl;
     }
     else {
-        std::cout << "Substring '" << str_to_find_sub << "' not found in: " << str_to_search_str << std::endl;
+        cout << "Substring '" << str_to_find_sub << "' not found in: " << str_to_search_str << endl;
     }
 
-    char str_to_find_sub_not_present[] = "complex";
     result_str = mystrstr(str_to_search_str, str_to_find_sub_not_present);
     if (result_str != nullptr) {
-        std::cout << "Substring '" << str_to_find_sub_not_present << "' found in: " << str_to_search_str << std::endl;
+        cout << "Substring '" << str_to_find_sub_not_present << "' found in: " << str_to_search_str << endl;
     }
     else {
-        std::cout << "Substring '" << str_to_find_sub_not_present << "' not found in: " << str_to_search_str << std::endl;
+        cout << "Substring '" << str_to_find_sub_not_present << "' not found in: " << str_to_search_str << endl;
     }
 
     return 0;
